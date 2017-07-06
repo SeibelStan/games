@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1em;
+}
+
+body {
+    font-family: monospace;
+    background: #222;
+}
+
+.container {
+    position: absolute;
+    margin: auto auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#board {
+    position: relative;
+    background: url(bg.svg) 100px 100px, #fff;
+}
+
+.unit {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    position: absolute;
+    z-index: 5;
+    font-size: 45px;
+    cursor: move;
+}
+
+[id^="s1-"] {
+    color: #960018;
+    background: rgba(150, 0, 24, .1);
+}
+[id^="s1-"].lastmove {
+    border: 1px dotted;
+}
+
+[id^="s2-"] {
+    color: #4F7930;
+    background: rgba(79, 121, 66, .1);
+}
+[id^="s2-"].lastmove {
+    border: 1px dotted;
+}

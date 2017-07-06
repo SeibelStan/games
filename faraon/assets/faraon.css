@@ -1,0 +1,71 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #fff6d5;
+}
+
+#board {
+	position: relative;
+	width: 750px;
+	height: 600px;
+	background-image: url(board.svg);
+	background-size: cover;
+	margin: 50px auto 0;
+}
+
+.unit {
+	cursor: pointer;
+	position: absolute;
+	width: 75px;
+	height: 75px;
+	background-image: url(units.svg);
+	background-size: 375px 150px;
+	z-index: 1;
+}
+.unit.lastmove {
+	filter: saturate(100%);
+}
+
+.sphinx.silver {
+	background-position: 0 0;
+}
+.faraon.silver {
+	background-position: -75px 0;
+}
+.anubis.silver {
+	background-position: -150px 0;
+}
+.scarab.silver {
+	background-position: -225px 0;
+}
+.pyramid.silver {
+	background-position: -300px 0;
+}
+
+.sphinx.red {
+	background-position: 0 -75px;
+}
+.faraon.red {
+	background-position: -75px -75px;
+}
+.anubis.red {
+	background-position: -150px -75px;
+}
+.scarab.red {
+	background-position: -225px -75px;
+}
+.pyramid.red {
+	background-position: -300px -75px;
+}
+
+.ray {
+	position: absolute;
+	width: 75px;
+	height: 75px;
+	background: rgba(255, 0, 0, .25);
+	z-index: 0;
+}
