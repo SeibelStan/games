@@ -1,0 +1,19 @@
+#game {
+    width: 200px;
+    height: 200px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 2px solid gray;
+    line-height: 50px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.cell.p0 {
+    background: red;
+}
+.cell.p1 {
+    background: blue;
+}
