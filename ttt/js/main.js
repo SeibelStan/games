@@ -1,6 +1,6 @@
 var hod = 0;
 var win = true;
-var names = ['крестики', 'нолики'];
+var names = ['красные', 'синие'];
 var colors = ['p0', 'p1'];
 
 function l(data) {
