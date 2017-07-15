@@ -12,28 +12,8 @@ function q(selector) {
 function qs(selector) {
     return document.querySelectorAll(selector);
 }
-function showWinner() {
-    if(win) {
-        //alert('Победили ' + names[+hod]);
-        l('Победили ' + names[+hod]);
-    }
-    else {
-        win = true;
-    }
-}
-function getState(i, j) {
-    var cell = q('#game [data-i="' + i + '"][data-j="' + j + '"]');
-    if(cell == null) {
-        return -1;
-    }
-    if(cell.classList.length <= 1) {
-        return 0;
-    }
-    return cell.classList[1];
-}
 
-window.onload = function() {
-
+function newGame() {
     var html = '';
     for(var i = 0; i < 3; i++) {
         html += '<tr class="row" data-i="' + i + '">';
@@ -56,43 +36,49 @@ window.onload = function() {
     });
 
     function checkWinner(i, j) {
-        var size = Math.min(
-            q('#game').rows.length,
-            qs('#game .row:nth-child(1) .cell').length
-        );
-
+        var size = q('#game').rows.length;
         var cellState = getState(i, j);
+        var currState;
 
-        // w-e
-        for(var c = Math.max(0, i - size); c < size; c++) {
-            var currState = getState(i, c);
-            if(currState == -1) { return false; }
-            if(currState != cellState) { win = false; break; }
+        for(var dir = 0; dir < 4; dir++) {
+            for(var c = Math.max(0, i - size); c < size; c++) {
+                switch(dir) {
+                    case 0: { currState = getState(i, c); break; }
+                    case 1: { currState = getState(c, j); break; }
+                    case 2: { currState = getState(c, c); break; }
+                    case 3: { currState = getState(c, size - 1 - c); break; }
+                }
+                if(currState == -1) { return false; }
+                if(currState != cellState) { win = false; break; }
+            }
+            showWinner();
         }
-        showWinner();
-
-        // n-s
-        for(var c = Math.max(0, j - size); c < size; c++) {
-            var currState = getState(c, j);
-            if(currState == -1) { return false; }
-            if(currState != cellState) { win = false; break; }
-        }
-        showWinner();
-
-        // nw-se
-        for(var c = Math.max(0, i - size); c < size; c++) {
-            var currState = getState(c, c);
-            if(currState == -1) { return false; }
-            if(currState != cellState) { win = false; break; }
-        }
-        showWinner();
-
-        // ne-sw
-        for(var c = Math.max(0, j - size); c < size; c++) {
-            var currState = getState(c, size - 1 - c);
-            if(currState == -1) { return false; }
-            if(currState != cellState) { win = false; break; }
-        }
-        showWinner();
     }
+}
+
+function showWinner() {
+    if(win) {
+        setTimeout(function() {
+            alert('Победили ' + names[+hod]);
+            newGame();
+        }, 200);
+    }
+    else {
+        win = true;
+    }
+}
+
+function getState(i, j) {
+    var cell = q('#game [data-i="' + i + '"][data-j="' + j + '"]');
+    if(cell == null) {
+        return -1;
+    }
+    if(cell.classList.length <= 1) {
+        return 0;
+    }
+    return cell.classList[1];
+}
+
+window.onload = function() {
+    newGame();
 }
