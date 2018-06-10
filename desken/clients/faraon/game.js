@@ -4,8 +4,8 @@ var
 	gtype = 'faraon',
 	unitSize = 75
 	dragging = false,
-	board,
-	gstate;
+	board = {},
+	gstate = {};
 
 if (location.href.match(/gid=/)) {
 	gid = location.href.replace(/.+?gid=(.+)/, '$1');
@@ -44,11 +44,11 @@ function build(data) {
 			stop: function () {
 				dragging = false;
 
-				var id = $(this).css('id');
+				var id = $(this).attr('id');
 				var x = $(this).css('left').replace(/(\d+).+/, '$1') / unitSize;
 				var y = $(this).css('top').replace(/(\d+).+/, '$1') / unitSize;
-				$(this).attr('data-x', x);
-				$(this).attr('data-y', y);
+				$(this).data('x', x);
+				$(this).data('y', y);
 
 				action(
 					"move",
@@ -56,7 +56,7 @@ function build(data) {
 						"id": id,
 						"x": x,
 						"y": y,
-						"r": $(this).attr('data-r')
+						"r": $(this).data('r')
 					}
 				);
 			}
@@ -66,7 +66,7 @@ function build(data) {
 				return false;
 			}
 
-			var rotation = $(this).attr('data-r');
+			var rotation = $(this).data('r');
 
 			if ($(this).hasClass('sphinx')) {
 				if ($(this).hasClass('red')) {
@@ -86,15 +86,15 @@ function build(data) {
 				rotation = (rotation < 3) ? parseInt(rotation) + 1 : 0
 			}
 
-			$(this).attr('data-r', rotation);
+			$(this).data('r', rotation);
 
 			action(
 				"move",
 				{
 					"id": $(this).attr('id'),
-					"x": $(this).attr('data-x'),
-					"y": $(this).attr('data-y'),
-					"r": $(this).attr('data-r')
+					"x": $(this).data('x'),
+					"y": $(this).data('y'),
+					"r": $(this).data('r')
 				}
 			);
 		});
@@ -114,9 +114,9 @@ function build(data) {
 
 function arrange() {
 	$('.unit').each(function () {
-		var x = $(this).attr('data-x');
-		var y = $(this).attr('data-y');
-		var r = $(this).attr('data-r');
+		var x = $(this).data('x');
+		var y = $(this).data('y');
+		var r = $(this).data('r');
 
 		$(this).css({
 			'left': x * unitSize + 'px',
@@ -131,9 +131,9 @@ function update(data) {
 	for (var i in data.units) {
 		var unit = data.units[i];
 		$('#' + unit.id)
-			.attr('data-x', unit.x)
-			.attr('data-y', unit.y)
-			.attr('data-r', unit.r);
+			.data('x', unit.x)
+			.data('y', unit.y)
+			.data('r', unit.r);
 	}
 
 	arrange();
@@ -224,9 +224,9 @@ function trace(sphinx) {
 		}
 	}
 
-	rayX = parseInt(sphinx.attr('data-x'));
-	rayY = parseInt(sphinx.attr('data-y'));
-	rayR = parseInt(sphinx.attr('data-r'));
+	rayX = parseInt(sphinx.data('x'));
+	rayY = parseInt(sphinx.data('y'));
+	rayR = parseInt(sphinx.data('r'));
 	rayEnd = false;
 
 	function rayOut() {

@@ -4,7 +4,7 @@ var
 	gtype = 'chess',
 	unitSize = 50,
 	dragging = false,
-	board;
+	board = {};
 
 if (location.href.match(/gid=/)) {
 	var gameid = location.href.replace(/.+?gid=(.+)/, '$1');
