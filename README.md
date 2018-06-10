@@ -3,9 +3,11 @@
 Набор давно сделанных игр.
 
 
-```chess``` - мультиплеерные шахматы.
+```desken``` - мультиплеерный движок настольных игр:
 
-```faraon``` - мультиплеерный [Фараон](http://www.mosigra.ru/Face/Show/faraon/).
+```desken/clients/chess``` - шахматы.
+
+```desken/clients/faraon``` - [Фараон](http://www.mosigra.ru/Face/Show/faraon/).
 
 ```clop``` - выстраивание колоний, несколько игроков в одном окне.
 

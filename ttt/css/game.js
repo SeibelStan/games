@@ -14,8 +14,8 @@ function qs(selector) {
 }
 
 function showWinner() {
-    if(win) {
-        setTimeout(function() {
+    if (win) {
+        setTimeout(function () {
             alert('Победили ' + names[+hod]);
             newGame();
         }, 200);
@@ -27,10 +27,10 @@ function showWinner() {
 
 function getState(i, j) {
     var cell = q('#game [data-i="' + i + '"][data-j="' + j + '"]');
-    if(cell == null) {
+    if (cell == null) {
         return -1;
     }
-    if(cell.classList.length <= 1) {
+    if (cell.classList.length <= 1) {
         return 0;
     }
     return cell.classList[1];
@@ -41,16 +41,16 @@ function checkWinner(i, j) {
     var cellState = getState(i, j);
     var currState;
 
-    for(var dir = 0; dir < 4; dir++) {
-        for(var c = Math.max(0, i - size); c < size; c++) {
-            switch(dir) {
+    for (var dir = 0; dir < 4; dir++) {
+        for (var c = Math.max(0, i - size); c < size; c++) {
+            switch (dir) {
                 case 0: { currState = getState(i, c); break; }
                 case 1: { currState = getState(c, j); break; }
                 case 2: { currState = getState(c, c); break; }
                 case 3: { currState = getState(c, size - 1 - c); break; }
             }
-            if(currState == -1) { return false; }
-            if(currState != cellState) { win = false; break; }
+            if (currState == -1) { return false; }
+            if (currState != cellState) { win = false; break; }
         }
         showWinner();
     }
@@ -58,18 +58,18 @@ function checkWinner(i, j) {
 
 function newGame() {
     var html = '';
-    for(var i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         html += '<tr class="row" data-i="' + i + '">';
-        for(var j = 0; j < 3; j++) {
+        for (var j = 0; j < 3; j++) {
             html += '<td class="cell" data-i="' + i + '" data-j="' + j + '"></td>';
         }
         q('#game').innerHTML = html;
     }
 
-    qs('.cell').forEach(function(el, i) {
+    qs('.cell').forEach(function (el, i) {
         el.onclick = function () {
             var cell = event.target;
-            if(cell.classList.length > 1) {
+            if (cell.classList.length > 1) {
                 return false;
             }
             cell.classList.add(colors[hod]);
@@ -80,6 +80,6 @@ function newGame() {
 
 }
 
-window.onload = function() {
+window.onload = function () {
     newGame();
 }

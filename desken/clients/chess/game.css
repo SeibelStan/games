@@ -7,7 +7,7 @@
 
 body {
     font-family: monospace;
-    background: #222;
+    background: #000;
 }
 
 .container {
@@ -21,7 +21,7 @@ body {
 
 #board {
     position: relative;
-    background: url(bg.svg) 100px 100px, #fff;
+    background: url('board.svg') 100px 100px, #fff;
 }
 
 .unit {
@@ -40,6 +40,7 @@ body {
     color: #960018;
     background: rgba(150, 0, 24, .1);
 }
+
 [id^="s1-"].lastmove {
     border: 1px dotted;
 }
@@ -48,6 +49,7 @@ body {
     color: #4F7930;
     background: rgba(79, 121, 66, .1);
 }
+
 [id^="s2-"].lastmove {
     border: 1px dotted;
 }

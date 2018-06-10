@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../assets/favicon.png" rel="icon">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="../../assets/jquery.ui.touch-punch.min.js"></script>
+
+    <link rel="stylesheet" href="game.css">
+    <script src="game.js"></script>
+    <title>DS-шахматы</title>
+</head>
+
+<body>
+    <script>
+        var minw = 400;
+        if (screen.width < minw) {
+            var scale = screen.width / minw;
+            var metaContent = document.querySelector('[name="viewport"]');
+            metaContent.setAttribute('content', 'width=' + minw + ', initial-scale=' + scale);
+        }
+    </script>
+
+    <div class="container">
+        <div id="board"></div>
+    </div>
+</body>
+
+</html>

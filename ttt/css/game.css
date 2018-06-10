@@ -11,9 +11,11 @@
     text-align: center;
     text-transform: uppercase;
 }
+
 .cell.p0 {
     background: red;
 }
+
 .cell.p1 {
     background: blue;
 }

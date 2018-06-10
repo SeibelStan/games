@@ -1,9 +1,11 @@
 <?php
 
 $gid = $_POST['gid'];
-$game = 'games/' . $gid . '.json';
+$gtype = $_POST['gtype'];
 
-$default_board = file_get_contents('default.json');
+$game = "games/$gtype-$gid.json";
+
+$defBoard = file_get_contents("samples/$gtype.json");
 
 switch($_POST['action']) {
 
@@ -11,7 +13,7 @@ switch($_POST['action']) {
         if(!file_get_contents($game)) {
             fopen($game, "w");
             chmod($game, 0777);
-            file_put_contents($game, $default_board);
+            file_put_contents($game, $defBoard);
         }
         echo file_get_contents($game);
 
@@ -26,6 +28,10 @@ switch($_POST['action']) {
             if($unit->id == $params['id']) {
                 $unit->x = $params['x'];
                 $unit->y = $params['y'];
+
+                if($gtype == 'faraon') {
+                    $unit->r = $params['r'];
+                }
             }
         }
         $board->lastmove = $params['id'];

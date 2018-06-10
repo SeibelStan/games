@@ -18,6 +18,7 @@ body, .empty {
     margin: 0 auto;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, .5);
 }
+
 #counter {
     margin: 32px auto;
     text-align: center;
@@ -27,9 +28,11 @@ body, .empty {
     width: 32px;
     height: 32px;
 }
+
 #board tr:nth-child(odd) .free:nth-child(odd) {
     background: #f1f8e9;
 }
+
 #board tr:nth-child(odd) .free:nth-child(even) {
     background: #dcedc8;
 }
@@ -37,6 +40,7 @@ body, .empty {
 #board tr:nth-child(even) .free:nth-child(odd) {
     background: #dcedc8;
 }
+
 #board tr:nth-child(even) .free:nth-child(even) {
     background: #f1f8e9;
 }
